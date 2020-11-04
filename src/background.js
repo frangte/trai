@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, protocol, BrowserWindow } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -10,15 +10,16 @@ protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
 ])
 
+let win;
 async function createWindow() {
   // Create the browser window.
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION
+      nodeIntegration: true
     }
   })
 
@@ -31,7 +32,23 @@ async function createWindow() {
     // Load the index.html when not in development
     win.loadURL('app://./index.html')
   }
+  statsWorkspace()
 }
+
+function statsWorkspace() {
+  const fs = require('fs')
+  const ledonDir = `${process.env.HOME}/.ledon`;
+
+  try {
+    const stats = fs.readdirSync(ledonDir)
+    win.webContents.send('statsWorkspace', stats)
+  } catch (e) {
+    fs.mkdirSync(ledonDir)
+    win.webContents.send('statsWorkspace', [])
+  }
+}
+
+ipcMain.on('statsWorkspace', statsWorkspace)
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {

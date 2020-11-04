@@ -1,6 +1,9 @@
 <template>
   <div class="editor">
-    <editor-content class="content prose font-serif" :editor="editor" />
+    <editor-content
+      class="content prose max-w-none" :editor="editor"
+      :class="fontFamily"
+    />
   </div>
 </template>
 
@@ -20,8 +23,7 @@ export default {
       default: true
     },
     fontFamily: {
-      type: Number,
-      required: false,
+      type: String,
     }
   },
   components: {
@@ -29,10 +31,8 @@ export default {
   },
   data() {
     return {
-      editor: newEditor(`<p>This is some inserted text. 👋</p>`, true),
+      editor: newEditor(``, true),
       keepInBounds: true,
-      linkUrl: null,
-      linkMenuIsActive: false
     };
   },
   watch: {
@@ -47,6 +47,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-</style>
