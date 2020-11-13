@@ -31,7 +31,7 @@ export default {
   },
   data() {
     return {
-      editor: newEditor(``, true),
+      editor: newEditor(this.content, this.editable),
       keepInBounds: true,
     };
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="fill-current flex flex-col w-16 bg-gray-300 p-2">
+  <div class="fill-current flex flex-col w-12 bg-gray-300 p-1">
 
     <nav-btn class="my-1" @click="$router.push('/edit')" :active="$route.path === '/edit'">
       <i-edit/>

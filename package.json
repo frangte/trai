@@ -22,7 +22,7 @@
     "tiptap": "^1.30.0",
     "tiptap-extensions": "^1.33.2",
     "vue": "^2.6.11",
-    "vue-router": "^3.4.8"
+    "vue-router": "^3.4.9"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -35,9 +35,6 @@
     "eslint-plugin-vue": "^6.2.2",
     "vue-cli-plugin-electron-builder": "~2.0.0-rc.5",
     "vue-template-compiler": "^2.6.11"
-  },
-  "resolutions": {
-    "prosemirror-model": "1.11.2"
   },
   "eslintConfig": {
     "root": true,
@@ -57,5 +54,8 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "resolutions": {
+    "prosemirror-model": "1.11.2"
+  }
 }
