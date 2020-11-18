@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex flex-wrap content-center h-12 sticky top-0 z-10">
+    <div class="flex flex-wrap content-center items-center h-12 sticky top-0 z-10">
       <div class="flex flex-wrap ml-2 content-center">Name document</div>
       <div class="flex flex-wrap ml-auto mr-2">
         <btn @click="changeEditable">

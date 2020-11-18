@@ -1,7 +1,7 @@
 <template>
   <div class="editor">
     <editor-content
-      class="content prose max-w-none" :editor="editor"
+      class="content prose max-w-none w-full" :editor="editor"
       :class="fontFamily"
     />
   </div>

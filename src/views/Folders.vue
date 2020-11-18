@@ -14,7 +14,7 @@
 </template>
 
 <script>
-const ipcRenderer = window.require("electron").ipcRenderer;
+import { readDir } from 'tauri/api/fs'
 
 export default {
   name: "Folders",
@@ -23,11 +23,13 @@ export default {
       collections: null
     }
   },
-  mounted() {
-    ipcRenderer.on('statsWorkspace', (event, data) => {
-      this.collections = data
-    })
-    ipcRenderer.send('statsWorkspace')
-  },
+  async created() {
+    try {
+      this.collections = await readDir('/home/nakhoa/.lqd')
+    } catch (err) {
+      console.log(err)
+      this.collections = []
+    }
+  }
 }
 </script>

@@ -1,6 +1,7 @@
 <template>
-  <div id="app" class="flex h-screen w-full">
+  <div id="app" class="flex h-screen w-full font-mono">
     <custom-nav />
+    {{ home }}
     <div class="w-full overflow-x-auto">
       <router-view />
     </div>
@@ -14,6 +15,14 @@ export default {
   name: 'App',
   components: {
     CustomNav: Nav
+  },
+  data() {
+    return {
+      home: process.env
+    }
+  },
+  created() {
+    
   }
 }
 </script>
